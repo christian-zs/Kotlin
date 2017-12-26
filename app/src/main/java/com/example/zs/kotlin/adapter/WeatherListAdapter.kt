@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 /**
- * Description:
+ * Description:天气列表适配器
  * Created by zs on 2017/12/26.
  */
 class WeatherListAdapter(val datas: List<String>) : RecyclerView.Adapter<WeatherListAdapter.ViewHolder>() {
