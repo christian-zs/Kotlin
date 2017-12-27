@@ -1,4 +1,4 @@
-package com.example.zs.kotlin.acticity
+package com.example.zs.kotlin.ui.acticity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

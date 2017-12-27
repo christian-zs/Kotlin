@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".acticity.WeatherListActivity">
+        <activity android:name="com.example.zs.kotlin.ui.acticity.ForecastActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".acticity.MainActivity" />
+        <activity android:name="com.example.zs.kotlin.ui.acticity.MainActivity" />
     </application>
 
 </manifest>
