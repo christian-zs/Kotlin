@@ -12,7 +12,7 @@ import com.example.zs.kotlin.domain.model.Forecast as ModelForecast
  * Description:
  * Created by zs on 2017/12/27.
  */
-class ForecastDataMapper {
+public class ForecastDataMapper {
     fun convertFromDataModel(forecast: ForecastResult): ForecastList {
         return ForecastList(forecast.city.name, forecast.city.country,
                 convertForecastListToDomain(forecast.list))

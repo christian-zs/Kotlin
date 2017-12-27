@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.example.zs.kotlin.R
-import com.example.zs.kotlin.data.ForecastRequest
-import com.example.zs.kotlin.ui.adapter.WeatherListAdapter
+import com.example.zs.kotlin.domain.commands.RequestForecastCommand
+import com.example.zs.kotlin.ui.adapter.ForecastListAdapter
 import org.jetbrains.anko.asyncResult
 import org.jetbrains.anko.find
 import org.jetbrains.anko.longToast
@@ -17,7 +17,7 @@ import org.jetbrains.anko.uiThread
  * Created by zs on 2017/12/26.
  */
 class ForecastActivity : AppCompatActivity() {
-    private var adapter: WeatherListAdapter? = null
+    private var adapter: ForecastListAdapter? = null
     private val items = listOf(
             "Mon 6/23 - Sunny - 31/17",
             "Tue 6/24 - Foggy - 21/8",
@@ -36,14 +36,16 @@ class ForecastActivity : AppCompatActivity() {
         val linearLayoutManger = LinearLayoutManager(applicationContext)
         linearLayoutManger.orientation = RecyclerView.VERTICAL
         recycler.layoutManager = linearLayoutManger
-        adapter = WeatherListAdapter(items)
-        recycler.adapter = adapter
 
         val url = "http://api.openweathermap.org/data/2.5/forecast/daily?" +
                 "APPID=15646a06818f61f7b8d7823ca833e1ce&q=94043&mode=json&units=metric&cnt=7"
         asyncResult {
-            ForecastRequest(url).run()
-            uiThread { longToast("ForecastRequest performed") }
+            val result = RequestForecastCommand("94043").excult()
+            uiThread {
+                recycler.adapter = ForecastListAdapter(result)
+
+                longToast("$result")
+            }
         }
     }
 }
