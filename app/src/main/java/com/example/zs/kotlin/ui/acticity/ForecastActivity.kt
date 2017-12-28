@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.example.zs.kotlin.R
 import com.example.zs.kotlin.domain.commands.RequestForecastCommand
+import com.example.zs.kotlin.domain.model.Forecast
 import com.example.zs.kotlin.ui.adapter.ForecastListAdapter
 import org.jetbrains.anko.asyncResult
 import org.jetbrains.anko.find
@@ -37,13 +38,14 @@ class ForecastActivity : AppCompatActivity() {
         linearLayoutManger.orientation = RecyclerView.VERTICAL
         recycler.layoutManager = linearLayoutManger
 
-        val url = "http://api.openweathermap.org/data/2.5/forecast/daily?" +
-                "APPID=15646a06818f61f7b8d7823ca833e1ce&q=94043&mode=json&units=metric&cnt=7"
         asyncResult {
             val result = RequestForecastCommand("94043").excult()
             uiThread {
-                recycler.adapter = ForecastListAdapter(result)
-
+                recycler.adapter = ForecastListAdapter(result, object : ForecastListAdapter.OnItemClickListener {
+                    override fun itemClick(forecast: Forecast) {
+                        longToast(forecast.date)
+                    }
+                })
                 longToast("$result")
             }
         }
