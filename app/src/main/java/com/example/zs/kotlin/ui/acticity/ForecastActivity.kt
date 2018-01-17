@@ -8,7 +8,7 @@ import com.example.zs.kotlin.R
 import com.example.zs.kotlin.domain.commands.RequestForecastCommand
 import com.example.zs.kotlin.domain.model.Forecast
 import com.example.zs.kotlin.ui.adapter.ForecastListAdapter
-import org.jetbrains.anko.asyncResult
+import org.jetbrains.anko.custom.async
 import org.jetbrains.anko.find
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.uiThread
@@ -38,7 +38,7 @@ class ForecastActivity : AppCompatActivity() {
         linearLayoutManger.orientation = RecyclerView.VERTICAL
         recycler.layoutManager = linearLayoutManger
 
-        asyncResult {
+        async {
             val result = RequestForecastCommand("94043").excult()
             uiThread {
                 recycler.adapter = ForecastListAdapter(result, object : ForecastListAdapter.OnItemClickListener {
