@@ -19,7 +19,7 @@ import org.jetbrains.anko.find
  */
 class ForecastListAdapter(
         private val forecastList: ForecastList,
-        private val itemClick: OnItemClickListener) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
+        private val itemClick: (Forecast) -> Unit) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
 
     @SuppressLint("InflateParams")
@@ -39,7 +39,7 @@ class ForecastListAdapter(
 
     class ViewHolder(
             private val itemLayout: View,
-            private val itemClick: OnItemClickListener) : RecyclerView.ViewHolder(itemLayout) {
+            private val itemClick: (Forecast) -> Unit) : RecyclerView.ViewHolder(itemLayout) {
 
         private val iconView: ImageView = itemLayout.find(R.id.icon)
         private val dateView: TextView = itemLayout.find(R.id.date)
@@ -58,14 +58,9 @@ class ForecastListAdapter(
                 descriptionView.text = forecast.description
                 maxTemperatureView.text = forecast.high.toString()
                 minTemperatureView.text = forecast.low.toString()
-                itemClick.itemClick(forecast)
+                itemLayout.setOnClickListener { itemClick.invoke(forecast) }
             }
         }
-
-    }
-
-    interface OnItemClickListener {
-        fun itemClick(forecast: Forecast)
     }
 }
 
