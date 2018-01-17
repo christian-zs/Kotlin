@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView
 import com.example.zs.kotlin.R
 import com.example.zs.kotlin.domain.commands.RequestForecastCommand
 import com.example.zs.kotlin.ui.adapter.ForecastListAdapter
+import kotlinx.android.synthetic.main.activity_list.*
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.find
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.uiThread
 
@@ -32,16 +32,15 @@ class ForecastActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
         // 使用 AnKo 扩展函数
-        val recycler: RecyclerView = find(R.id.recycler_list)
         val linearLayoutManger = LinearLayoutManager(applicationContext)
         linearLayoutManger.orientation = RecyclerView.VERTICAL
-        recycler.layoutManager = linearLayoutManger
+        forecastList.layoutManager = linearLayoutManger
 
         doAsync {
             val result = RequestForecastCommand("94043").excult()
             uiThread {
-                recycler.adapter = ForecastListAdapter(result){
-                    forecast -> longToast(forecast.date)
+                forecastList.adapter = ForecastListAdapter(result) { forecast ->
+                    longToast(forecast.date)
                 }
             }
         }

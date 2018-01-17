@@ -6,7 +6,7 @@
     tools:context=".ui.acticity.MainActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_list"
+        android:id="@+id/forecastList"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
