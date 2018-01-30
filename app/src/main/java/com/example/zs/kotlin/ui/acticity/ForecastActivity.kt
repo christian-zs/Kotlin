@@ -45,8 +45,8 @@ class ForecastActivity : AppCompatActivity() {
                 }
             }
         }
-        val sort: IntArray = intArrayOf(30, 5, 42, 41, 33, 1, 56)
-        quickSort(sort, 0, sort.size - 1)
+//        val sort: IntArray = intArrayOf(30, 5, 42, 41, 33, 1, 56)
+//        quickSort(sort, 0, sort.size - 1)
     }
 
     //快速排序

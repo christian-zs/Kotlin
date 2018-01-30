@@ -9,7 +9,7 @@ import java.util.*
 import com.example.zs.kotlin.domain.model.Forecast as ModelForecast
 
 /**
- * Description:
+ * Description:讲从服务器返回来的 json 转换成想要的数据
  * Created by zs on 2017/12/27.
  */
 public class ForecastDataMapper {

@@ -9,12 +9,10 @@ import com.example.zs.kotlin.domain.model.ForecastList
  * Description:执行
  * Created by zs on 2017/12/27.
  */
-class RequestForecastCommand(val zipCode: String) :
-        Command<ForecastList> {
+class RequestForecastCommand(private val zipCode: String) : Command<ForecastList> {
     override fun excult(): ForecastList {
-        val forecastRequest = ForecastRequest(zipCode)
         return ForecastDataMapper().convertFromDataModel(
-                forecastRequest.run())
+                ForecastRequest(zipCode).run())
     }
 
 }
